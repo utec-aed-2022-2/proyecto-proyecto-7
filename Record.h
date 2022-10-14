@@ -32,4 +32,24 @@ struct RecordBank : public Record {
     }
 };
 
+struct RecordPerson : public Record {
+    std::string nombres;
+    std::string apellidos;
+    int edad;
+
+    RecordPerson(std::string nombres, std::string apellidos, int edad) : nombres(std::move(nombres)),
+                                                                         apellidos(std::move(apellidos)),
+                                                                         edad(edad){};
+
+    std::string serialize() override {
+        std::string formatted;
+
+        formatted += nombres + ", ";
+        formatted += apellidos + ", ";
+        formatted += std::to_string(edad);
+
+        return formatted;
+    }
+};
+
 #endif
