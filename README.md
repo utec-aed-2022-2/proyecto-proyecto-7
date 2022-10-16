@@ -117,7 +117,7 @@ Para mayor comprensión, el código se encuentra comentado.
 - Se está usando C++ 17.
 
 
-- El archivo main cuenta con distintos test que servirán a comprender cómo funciona la estructura y cuales son sus
+- El archivo main cuenta con distintos test que servirán para comprender cómo funciona la estructura y cuales son sus
   capacidades.
 
 
