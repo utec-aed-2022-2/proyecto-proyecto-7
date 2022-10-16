@@ -25,7 +25,8 @@ public:
     // EDUCATIVE PURPOSES
     // Cambia el Record de un Block ya insertado.
     bool EXPLOIT_changeRecord(int block_index, int record_index, Record* record) {
-        if (block_index >= blockchain.size() || block_index < 0) {
+        if (block_index >= blockchain.size() || block_index < 0 ||
+            record_index >= blockchain[0]->maxBlockSize || record_index < 0) {
             return false;
         }
 
@@ -44,7 +45,8 @@ public:
     // EDUCATIVE PURPOSES
     // Elimina el Record de un Block ya insertado.
     bool EXPLOIT_deleteRecord(int block_index, int record_index) {
-        if (block_index >= blockchain.size() || block_index < 0) {
+        if (block_index >= blockchain.size() || block_index < 0 ||
+            record_index >= blockchain[0]->maxBlockSize || record_index < 0) {
             return false;
         }
 
