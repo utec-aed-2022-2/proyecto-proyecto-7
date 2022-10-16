@@ -140,8 +140,19 @@ Para mayor comprensión, el código se encuentra comentado.
   generar. Esta decisión es para que quien revise la entrega pueda revisar el funcionamiento de la estructura sin que
   cambien los datos con cada ejecución, pero es libre de cambiarlo cuando desee.
 
+## Actividades por integrante
+
+### Nicolás Arroyo
+
+- Creación de la estructura Record.
+- Creación de las clases Block y Blockchain.
+- Creación de los test del main.
+- Creación de las funciones experimentales de pseudoapp.h
+
 ## Bibliografía
 
 - Narayanan, Arvind; Bonneau, Joseph; Felten, Edward; Miller, Andrew; Goldfeder, Steven (2016). Bitcoin and
   cryptocurrency technologies: a comprehensive introduction. Princeton: Princeton University Press. ISBN
   978-0-691-17169-2.
+
+- https://github.com/System-Glitch/SHA256
