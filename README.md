@@ -116,6 +116,11 @@ Para mayor comprensión, el código se encuentra comentado.
 
 - Se está usando C++ 17.
 
+
+- El archivo main cuenta con distintos test que servirán a comprender cómo funciona la estructura y cuales son sus
+  capacidades.
+
+
 - Los métodos de la clase Blockchain que empiezan con EXPLOIT sirven para mostrar cómo se vería afectada la estructura
   si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
 
