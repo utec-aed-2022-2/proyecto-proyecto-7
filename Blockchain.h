@@ -30,6 +30,9 @@ public:
             return false;
         }
 
+        delete blockchain[block_index]->block_records[record_index];
+        blockchain[block_index]->block_records[record_index] = nullptr;
+
         blockchain[block_index]->block_records[record_index] = record;
 
         for (int i = block_index; i < blockchain.size(); ++i) {
