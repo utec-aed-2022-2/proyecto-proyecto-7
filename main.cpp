@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include "Blockchain.h"
+#include "pseudoapp.h"
 
 
 void test_block() {
@@ -8,7 +6,8 @@ void test_block() {
     Block b;
 
     // Se muestra el bloque vació.
-    std::cout << "\n" << b << std::endl;
+    std::cout << "\n"
+              << b << std::endl;
 
     // Se agregan 5 distintos registros al bloque.
     // Para este ejemplo cada bloque podrá guardar 5 registros como máximo.
@@ -19,14 +18,16 @@ void test_block() {
     b.insertRecord(new RecordBank("Josue", "Renato", 500, "2012-06-27"));
 
     // Se muestra el bloque en cuestión.
-    std::cout << "\n" << b << std::endl;
+    std::cout << "\n"
+              << b << std::endl;
 
     // Se intenta agregar un nuevo registro cuando el bloque ya está lleno.
     // El intento debe retornar false.
     std::cout << std::boolalpha << b.insertRecord(new RecordBank("Heider", "Manuel", 865, "2013-09-02")) << std::endl;
 
     // Volvemos  a imprimir el bloque para comprobar que no se colocó el último registro.
-    std::cout << "\n" << b << std::endl;
+    std::cout << "\n"
+              << b << std::endl;
 }
 
 void test_blockchain() {
@@ -95,7 +96,8 @@ void test_blockchain_v2() {
 }
 
 int main() {
-    test_block();
-    test_blockchain();
-    test_blockchain_v2();
+    //    test_block();
+    //    test_blockchain();
+    //    test_blockchain_v2();
+    //    mainMenu(); // Leer parte final del README
 }
