@@ -49,19 +49,29 @@ Para mayor comprensión, el código se encuentra comentado.
 ### Clase Record
 
 - Clase abstracta que permite guardar datos según la implementación de sus clases hijas.
+
+
 - Puede ser serializada, es decir, su información se puede representar como un texto.
 
 ### Clase Block
 
 - Permite guardar como máximo tantos Records como desee el usuario de nuestra estructura.
+
+
 - Estos registros son guardados en un array de punteros a Records.
+
+
 - Cada vez que se agregue un nuevo Record cambiará el hash del bloque, pues su información ha sido modificada.
 
 ### Clase Blockchain
 
 - Guarda cada uno de los Blocks agregados dentro de un Circular Array de punteros a bloques.
+
+
 - Si se desea agregar un bloque, primero lo mina, es decir, realizará el proceso para hallar el proof of work, y luego
   lo agrega.
+
+
 - Tiene métodos con propósito educativo que permiten realizar exploits sobre la propia estructura para demostrar cómo se
   verían las discrepancias en caso alguien intente vulnerarla.
 
@@ -70,10 +80,16 @@ Para mayor comprensión, el código se encuentra comentado.
 - Insertar bloque: Al estar usando un array circular, el push_back de un nuevo bloque se realiza en O(1). Sin
   embargo, en caso el array circular se quede sin espacio se tendrá que hacer un resize, lo que tiene una complejidad
   de O(n).
+
+
 - Acceder bloque: Siempre es O(1), pues cuenta con random access al tratarse por debajo como un array.
+
+
 - Exploit Modificar o Eliminar bloque: Acceder a un registro de un bloque en específico tiene una complejidad de O(1). A
   pesar de esto, todos los registros hijos tendrán que recalcular su hash, pues ha cambiado el del padre, por lo que
   tendrá complejidad de O(n).
+
+
 - Exploit Minar toda la Blockchain: En el peor de los casos cuando se ha modificado el bloque génesis, se tendrá que
   minar toda la blockchain, por lo que tendrá una complejidad de O(n).
 
@@ -100,12 +116,18 @@ Para mayor comprensión, el código se encuentra comentado.
 
 - Los métodos de la clase Blockchain que empiezan con EXPLOIT sirven para mostrar cómo se vería afectada la estructura
   si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
+
+
 - Las funciones del archivo pseudoapp.h tratan de presentar una demo de cómo sería el funcionamiento de una blockchain
   que guarda registros bancarios. Sin embargo, son de uso experimental y su principal propósito es otorgar un manejo
   visual provisional de la blockchain a quien revise esta entrega.
+
+
 - La clase Block cuenta con la variable global llamada MAX_BLOCK_SIZE, la cual puede ser modificada como se desee. Por
   defecto señaliza que cada bloque puede guardar 5 registros como máximo. Se eligió el uso de una variable global porque
   dejar que el usuario elija el tamaño de cada bloque quitaría su estandarización.
+
+
 - La clase Block cuenta con las variables globales llamadas MIN_POW y MAX_POW, las que representan el rango en el que se
   encontrará el Proof of Work. Actualmente, ambas son iguales a 11, por lo que este número será el único que podrán
   generar. Esta decisión es para que quien revise la entrega pueda revisar el funcionamiento de la estructura sin que
