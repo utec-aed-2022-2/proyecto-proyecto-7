@@ -30,7 +30,7 @@ computacional, podría modificar completamente la estructura lo suficientemente 
 discrepancia generada antes que nadie se dé cuenta.
 
 Para evitar esto en nuestra implementación, cada vez que se genera un bloque se elige al azar un número entre un rango
-brindado por el propio usuario que será llamado proof of work.
+secreto que será llamado proof of work.
 
 El propósito de este número es que un bloque solo podrá ser considerado válido si los n primeros dígitos de su hash
 coinciden con el proof of work.
@@ -86,6 +86,30 @@ Para mayor comprensión, el código se encuentra comentado.
   También se pudo haber usado una lista para agregar nuevos bloques de manera constante sin tener que hacer un resize
   a toda la estructura, pero se tomó como mayor prioridad el poder recuperar los datos de manera rápida, lo que en una
   lista supondría tener que iterar todos los bloques en el peor de los casos.
+
+## Modo de uso
+
+1. Creas un objeto Blockchain.
+2. Creas un objeto Block alojado en el heap.
+3. Añades registros alojados en el heap al Block recién creado.
+4. Agregas el Block al Blockchain.
+5. Repites los pasos 2 a 4 cuantas veces desees para llenar tu blockchain.
+6. Tu Blockchain estará listo y puedes usar las funciones que esta contiene.
+
+## Consideraciones (IMPORTANTE LEER)
+
+- Los métodos de la clase Blockchain que empiezan con EXPLOIT sirven para mostrar cómo se vería afectada la estructura
+  si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
+- Las funciones del archivo pseudoapp.h tratan de presentar una demo de cómo sería el funcionamiento de una blockchain
+  que guarda registros bancarios. Sin embargo, son de uso experimental y su principal propósito es otorgar un manejo
+  visual provisional de la blockchain a quien revise esta entrega.
+- La clase Block cuenta con la variable global llamada MAX_BLOCK_SIZE, la cual puede ser modificada como se desee. Por
+  defecto señaliza que cada bloque puede guardar 5 registros como máximo. Se eligió el uso de una variable global porque
+  dejar que el usuario elija el tamaño de cada bloque quitaría su estandarización.
+- La clase Block cuenta con las variables globales llamadas MIN_POW y MAX_POW, las que representan el rango en el que se
+  encontrará el Proof of Work. Actualmente, ambas son iguales a 11, por lo que este número será el único que podrán
+  generar. Esta decisión es para que quien revise la entrega pueda revisar el funcionamiento de la estructura sin que
+  cambien los datos con cada ejecución, pero es libre de cambiarlo cuando desee.
 
 ## Bibliografía
 
