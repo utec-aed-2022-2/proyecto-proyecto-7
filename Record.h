@@ -5,10 +5,14 @@
 #include <string>
 #include <utility>
 
+// Estructura virtual que representa a un registro.
 struct Record {
+    // Sus datos podrán ser serializados.
     virtual std::string serialize() = 0;
+    virtual ~Record() = default;
 };
 
+// Estructura hija que representa el registro de un banco.
 struct RecordBank : public Record {
     std::string sender_id;
     std::string receiver_id;
@@ -32,6 +36,7 @@ struct RecordBank : public Record {
     }
 };
 
+// Estructura hija que representa el registro de una persona.
 struct RecordPerson : public Record {
     std::string nombres;
     std::string apellidos;
