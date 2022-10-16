@@ -59,7 +59,7 @@ private:
     }
 
 public:
-    int maxBlockSize = MAX_BLOCK_SIZE;
+    const int maxBlockSize = MAX_BLOCK_SIZE;
 
     // Cada Block tiene un array de punteros a Records.
     Record* block_records[MAX_BLOCK_SIZE] = {nullptr};
