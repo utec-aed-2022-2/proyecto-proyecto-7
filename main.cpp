@@ -82,7 +82,7 @@ void test_blockchain_v2() {
     // Creamos un objeto blockchain.
     Blockchain blockchain;
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 20; ++i) {
         auto block = new Block;
         block->insertRecord(
                 new RecordBank("Sender" + std::to_string(i), "Receiver" + std::to_string(i), i, "2000-01-01"));
@@ -93,11 +93,24 @@ void test_blockchain_v2() {
     // Mostramos la blockchain y verificamos su integridad.
     std::cout << blockchain;
     std::cout << "Is blockchain exploited ?: " << std::boolalpha << blockchain.isBlockchainExploited() << std::endl;
+
+    // EXPLOIT Cambiamos registros de nuestra blockchain.
+    blockchain.EXPLOIT_deleteRecord(8, 1);
+
+    // Mostramos la blockchain y verificamos su integridad.
+    std::cout << blockchain;
+    std::cout << "Is blockchain exploited ?: " << std::boolalpha << blockchain.isBlockchainExploited() << std::endl;
+
+    // EXPLOIT Minamos toda la blockchain maliciosamente para no dejar evidencia de los cambios realizados.
+    blockchain.EXPLOIT_mineAllBlockchain();
+    // Imprimimos la blockchain y comprobamos su integridad.
+    std::cout << blockchain;
+    std::cout << "Is blockchain exploited ?: " << std::boolalpha << blockchain.isBlockchainExploited() << std::endl;
 }
 
 int main() {
-    //    test_block();
-    //    test_blockchain();
-    //    test_blockchain_v2();
+//        test_block();
+//        test_blockchain();
+//    test_blockchain_v2();
     //    mainMenu(); // Leer parte final del README
 }
