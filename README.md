@@ -114,6 +114,8 @@ Para mayor comprensión, el código se encuentra comentado.
 
 ## Consideraciones (IMPORTANTE LEER)
 
+- Se está usando C++ 17.
+
 - Los métodos de la clase Blockchain que empiezan con EXPLOIT sirven para mostrar cómo se vería afectada la estructura
   si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
 
