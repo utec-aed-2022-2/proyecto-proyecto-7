@@ -4,10 +4,6 @@
 #include "Block.h"
 #include "CircularArray.h"
 
-// DISCLAIMER: LA BLOCKCHAIN PODRÁ ALMACENAR BLOQUES DE CUALQUIER TIPO DE DATO. SIN EMBARGO,
-//             LOS NOMBRES DE LAS FUNCIONES Y LA DOCUMENTACIÓN ESTÁN ESCRITOS BAJO LA IDEA DE
-//             QUE SE GUARDARÁN RECORDS DE ALGÚN TIPO.
-
 class Blockchain {
 private:
     // Los Blocks se guardarán en un CircularArray.
