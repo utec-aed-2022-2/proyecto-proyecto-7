@@ -125,8 +125,8 @@ Para mayor comprensión, el código se encuentra comentado.
   si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
 
 
-- Las funciones del archivo pseudoapp.h tratan de presentar una demo de cómo sería el funcionamiento de una blockchain
-  que guarda registros bancarios. Sin embargo, son de uso experimental y su principal propósito es otorgar un manejo
+- La función mainMenu del archivo pseudoapp.h trata de presentar una demo de cómo sería el funcionamiento de una blockchain
+  que guarda registros bancarios. Sin embargo, es de uso experimental y su principal propósito es otorgar un manejo
   visual provisional de la blockchain a quien revise esta entrega.
 
 
