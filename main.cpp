@@ -61,8 +61,8 @@ void test_blockchain() {
     std::cout << "Is blockchain exploited ?: " << std::boolalpha << blockchain.isBlockchainExploited() << std::endl;
 
     // EXPLOIT Cambiamos registros de nuestra blockchain.
-    blockchain.EXPLOIT_changeRecord(0, 0, new RecordBank("Nicolas", "Hacker", 1000000, "2020-12-23"));
-    blockchain.EXPLOIT_changeRecord(0, 4, new RecordBank("Nicolas", "Hacker", 1000000, "2020-12-23"));
+    blockchain.EXPLOIT_changeRecord(1, 0, new RecordBank("Nicolas", "Hacker", 1000000, "2020-12-23"));
+    blockchain.EXPLOIT_changeRecord(1, 4, new RecordBank("Nicolas", "Hacker", 1000000, "2020-12-23"));
 
     // EXPLOIT Cambiamos registros de nuestra blockchain.
     blockchain.EXPLOIT_deleteRecord(1, 1);
@@ -112,5 +112,5 @@ int main() {
 //        test_block();
 //        test_blockchain();
 //    test_blockchain_v2();
-    //    mainMenu(); // Leer parte final del README
+//        mainMenu(); // Leer parte final del README
 }
