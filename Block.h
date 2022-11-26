@@ -121,6 +121,18 @@ public:
         return os;
     }
 
+    std::string to_string() {
+        std::string res;
+
+        res += "CURRENT HASH: " + curr_hash + "\n";
+        res += "PREVIOUS HASH: " + prev_hash + "\n";
+        res += "PROOF OF WORK: " + proof_of_work + "\n";
+        res += "RECORDS:\n";
+        res += serializeBlockRecords();
+
+        return res;
+    }
+
     // Destructor que realiza un delete por cada Record que tenga el Block.
     ~Block() {
         for (auto& block_record: block_records) {

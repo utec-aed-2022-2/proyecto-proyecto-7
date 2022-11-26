@@ -2,7 +2,7 @@
 #define BLOCKCHAIN_H
 
 #include <utility>
-
+#include <string>
 #include "Block.h"
 #include "CircularArray.h"
 #include "BTree.h"
@@ -71,6 +71,16 @@ public:
         double res = 0;
 
         for (auto i: hash_index_sender.get(key)) {
+            res += dynamic_cast<RecordBank*>(i)->amount;
+        }
+
+        return res;
+    }
+
+    double calc_total_amount_sent() {
+        double res = 0;
+
+        for (auto i: btree_index_date.range_search(Datetime("0000-00-00 00:00:00"), Datetime("9999-99-99 99:99:99"))) {
             res += dynamic_cast<RecordBank*>(i)->amount;
         }
 
@@ -174,6 +184,20 @@ public:
         }
         os << "------------------------------------------------------------------------------------------------\n";
         return os;
+    }
+
+    std::string to_string() {
+        std::string res;
+
+        for (int i = 0; i < blockchain.size(); ++i) {
+            res += "------------------------------------------------------------------------------------------------\n";
+            res += "BLOCK ID: ";
+            res += std::to_string(i);
+            res += "\n";
+            res += blockchain[i]->to_string();
+        }
+        res += "------------------------------------------------------------------------------------------------\n";
+        return res;
     }
 
     ~Blockchain() {
