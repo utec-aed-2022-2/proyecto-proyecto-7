@@ -23,6 +23,15 @@ toda la estructura.
 De este modo, serviría para guardar información valiosa, como pueden llegar a ser transacciones bancarias o los datos de
 cada persona que posee un gobierno.
 
+## Caso de uso
+
+En esta oportunidad, hemos decidido utilizar la cadena de bloques para guardar información valiosa de una empresa
+bancaria, por lo que cada registro tendrá datos como quién lo envió, quién lo recibió, el monto y la fecha de
+realización.
+
+Se ha decidido este caso de uso, pues representa una ocasión en la que quien implemente la estructura de datos
+necesite que sus datos no puedan ser alterados o que se pueda validar su integridad en cualquier momento.
+
 ## Proof of work
 
 Si alguien desea cambiar la información de un bloque que ya ha sido validado y tiene la suficiente capacidad
@@ -43,8 +52,6 @@ Este proceso tardará proporcionalmente a la cantidad de dígitos de nuestro pro
 necesarios hasta que se logre "adivinarlo".
 
 ## Implementación
-
-Para mayor comprensión, el código se encuentra comentado.
 
 ### Clase Record
 
@@ -75,6 +82,22 @@ Para mayor comprensión, el código se encuentra comentado.
 - Tiene métodos con propósito educativo que permiten realizar exploits sobre la propia estructura para demostrar cómo se
   verían las discrepancias en caso alguien intente vulnerarla.
 
+### Array Circular
+
+- Estructura donde se almacenan los bloques de la blockchain.
+
+### B Tree
+
+- Índice dedicado a las fechas de los registros.
+
+### ChainHash
+
+- Índice dedicado a los nombres de todos los usuarios.
+
+### Trie
+
+- Índice dedicado a los nombres de todos los usuarios.
+
 ## Análisis de complejidad
 
 - Insertar bloque: Al estar usando un array circular, el push_back de un nuevo bloque se realiza en O(1). Sin
@@ -92,6 +115,44 @@ Para mayor comprensión, el código se encuentra comentado.
 
 - Exploit Minar toda la Blockchain: En el peor de los casos cuando se ha modificado el bloque génesis, se tendrá que
   minar toda la blockchain, por lo que tendrá una complejidad de O(n).
+
+
+- Buscar registros enviados/recibidos por un nombre en específico: En el mejor de los casos tendrá una complejidad
+  constante al tratarse de una hash table. Sin embargo, en el peor de los casos será lineal, pues se tendrá que 
+  hacer un rehash a toda la tabla.
+
+
+- Mostrar registros ordenados cronológicamente: Tendrá una complejidad lineal, pues hará tantas operaciones como
+  registros guarde el B Tree.
+
+
+- Mostrar registros en una fecha en específico: Al tener que encontrar un elemento en específico en un B Tree, la 
+  complejidad será logarítmica con base dependiendo al tamaño del nodo.
+
+
+- Mostrar registros en un rango de fechas específico: En el peor de los casos será lineal, pues tendrá que iterar
+  a lo largo de todos los elementos del B Tree.
+
+
+- Mostrar los registros enviados/recibidos por personas cuyo nombre contiene el input: Tiene una complejidad lineal,
+  pues dependerá de qué tan largo sea el sufijo otorgado por el cliente para poder buscarlo en el Trie.
+
+
+- Mostrar cantidad de dinero enviado/recibido por un usuario: Utilizará el índice hash para obtener todos los clientes
+  con el nombre otorgado, por lo que en el peor caso tendrá complejidad lineal al tener que iterar entre todos los
+  registros dentro del bucket designado.
+
+
+- Mostrar cantidad de dinero enviada: Complejidad lineal al tener que iterar en todos los registros del blockchain. 
+
+
+- Insertar en el índice B Tree: Complejidad logarítmica con base dependiendo al tamaño de cada nodo.
+
+
+- Insertar en el índice Trie: Complejidad lineal dependiendo del tamaño del input.
+
+
+- Insertar en el índice Hash: Complejidad constante en el mejor caso, lineal en el peor.
 
 ## Uso de estructuras propias
 
@@ -117,17 +178,8 @@ Para mayor comprensión, el código se encuentra comentado.
 - Se está usando C++ 17.
 
 
-- El archivo main cuenta con distintos test que servirán para comprender cómo funciona la estructura y cuales son sus
-  capacidades.
-
-
 - Los métodos de la clase Blockchain que empiezan con EXPLOIT sirven para mostrar cómo se vería afectada la estructura
   si un agente malicioso tratase de dañarla, mas no pertenecen intrínsecamente a la estructura.
-
-
-- La función mainMenu del archivo pseudoapp.h trata de presentar una demo de cómo sería el funcionamiento de una blockchain
-  que guarda registros bancarios. Sin embargo, es de uso experimental y su principal propósito es otorgar un manejo
-  visual provisional de la blockchain a quien revise esta entrega.
 
 
 - La clase Block cuenta con la variable global llamada MAX_BLOCK_SIZE, la cual puede ser modificada como se desee. Por
@@ -148,6 +200,16 @@ Para mayor comprensión, el código se encuentra comentado.
 - Creación de las clases Block y Blockchain.
 - Creación de los test del main.
 - Creación de las funciones experimentales de pseudoapp.h
+
+
+## Conclusiones
+
+La cadena de bloques en sí sirve de manera correcta para almacenar los datos de una entidad bancaria, pues los protege
+en contra de amenazas y ofrece una forma de verificar si la seguridad ha sido violentada.
+
+Por otro lado, los índices creados para los registros sirven como un adicional para poder encontrar información de la
+blockchain de manera rápida, con el lado negativo de los recursos necesarios para poderlos mantener funcionales.
+
 
 ## Bibliografía
 
