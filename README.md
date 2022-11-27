@@ -108,9 +108,7 @@ necesarios hasta que se logre "adivinarlo".
 - Acceder bloque: Siempre es O(1), pues cuenta con random access al tratarse por debajo como un array.
 
 
-- Exploit Modificar o Eliminar bloque: Acceder a un registro de un bloque en específico tiene una complejidad de O(1). A
-  pesar de esto, todos los registros hijos tendrán que recalcular su hash, pues ha cambiado el del padre, por lo que
-  tendrá complejidad de O(n).
+- Exploit Modificar o Eliminar bloque: Acceder a un registro de un bloque en específico tiene una complejidad de O(1).
 
 
 - Exploit Minar toda la Blockchain: En el peor de los casos cuando se ha modificado el bloque génesis, se tendrá que
@@ -118,51 +116,42 @@ necesarios hasta que se logre "adivinarlo".
 
 
 - Buscar registros enviados/recibidos por un nombre en específico: En el mejor de los casos tendrá una complejidad
-  constante al tratarse de una hash table. Sin embargo, en el peor de los casos será lineal, pues se tendrá que 
-  hacer un rehash a toda la tabla.
+  O(1) al tratarse de una hash table. Sin embargo, en el peor de los casos será O(n), pues se tendrá que iterar entre
+  todos los registros del bucket.
 
 
-- Mostrar registros ordenados cronológicamente: Tendrá una complejidad lineal, pues hará tantas operaciones como
+- Mostrar registros ordenados cronológicamente: Tendrá una complejidad O(n), pues hará tantas operaciones como
   registros guarde el B Tree.
 
 
 - Mostrar registros en una fecha en específico: Al tener que encontrar un elemento en específico en un B Tree, la 
-  complejidad será logarítmica con base dependiendo al tamaño del nodo.
+  complejidad será log(n).
 
 
-- Mostrar registros en un rango de fechas específico: En el peor de los casos será lineal, pues tendrá que iterar
+- Mostrar registros en un rango de fechas específico: En el peor de los casos será O(n), pues tendrá que iterar
   a lo largo de todos los elementos del B Tree.
 
 
-- Mostrar los registros enviados/recibidos por personas cuyo nombre contiene el input: Tiene una complejidad lineal,
+- Mostrar los registros enviados/recibidos por personas cuyo nombre contiene el input: Tiene una complejidad O(n),
   pues dependerá de qué tan largo sea el sufijo otorgado por el cliente para poder buscarlo en el Trie.
 
 
 - Mostrar cantidad de dinero enviado/recibido por un usuario: Utilizará el índice hash para obtener todos los clientes
-  con el nombre otorgado, por lo que en el peor caso tendrá complejidad lineal al tener que iterar entre todos los
+  con el nombre otorgado, por lo que en el peor caso tendrá complejidad O(n) al tener que iterar entre todos los
   registros dentro del bucket designado.
 
 
-- Mostrar cantidad de dinero enviada: Complejidad lineal al tener que iterar en todos los registros del blockchain. 
+- Mostrar cantidad de dinero enviada: Complejidad O(n) al tener que iterar en todos los registros del blockchain. 
 
 
-- Insertar en el índice B Tree: Complejidad logarítmica con base dependiendo al tamaño de cada nodo.
+- Insertar en el índice B Tree: Complejidad log(n).
 
 
-- Insertar en el índice Trie: Complejidad lineal dependiendo del tamaño del input.
+- Insertar en el índice Trie: Complejidad O(n).
 
 
-- Insertar en el índice Hash: Complejidad constante en el mejor caso, lineal en el peor.
+- Insertar en el índice Hash: O(1) amortizado.
 
-## Uso de estructuras propias
-
-- Circular Array: La principal funcionalidad de una blockchain será el almacenar información para que posteriormente
-  pueda ser revisada. Es por esto que se eligió un array circular como el contenedor de los bloques, pues permitirá el
-  acceso en tiempo constante a cualquier registro y la agregación de nuevos bloques de manera constante amortizada.
-
-  También se pudo haber usado una lista para agregar nuevos bloques de manera constante sin tener que hacer un resize
-  a toda la estructura, pero se tomó como mayor prioridad el poder recuperar los datos de manera rápida, lo que en una
-  lista supondría tener que iterar todos los bloques en el peor de los casos.
 
 ## Modo de uso
 
@@ -198,8 +187,8 @@ necesarios hasta que se logre "adivinarlo".
 
 - Creación de la estructura Record.
 - Creación de las clases Block y Blockchain.
-- Creación de los test del main.
-- Creación de las funciones experimentales de pseudoapp.h
+- Adaptar BTree, Trie y Chainhash para guardar un key value.
+- Investigación sobre los métodos de hashing.
 
 
 ## Conclusiones
