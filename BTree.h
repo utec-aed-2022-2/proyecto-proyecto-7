@@ -21,7 +21,8 @@ private:
 
         ExtractionResult() : left_tree(nullptr), right_tree(nullptr) {}
 
-        ExtractionResult(TK _k, TV _v, BTreeNode<TK, TV>* _left_tree, BTreeNode<TK, TV>* _right_tree) : key(_k), value(_v), left_tree(_left_tree),
+        ExtractionResult(TK _k, TV _v, BTreeNode<TK, TV>* _left_tree, BTreeNode<TK, TV>* _right_tree) : key(_k), value(_v),
+                                                                                                        left_tree(_left_tree),
                                                                                                         right_tree(_right_tree) {}
     };
 
@@ -32,6 +33,114 @@ public:
         std::vector<TV> result;
         range_search(root, key, key, result);
         return result;
+    }
+
+    void remove(TK key) {
+        if (root != nullptr) {
+            remove(root, key);
+
+            if (root->count == 0) {
+                BTreeNode<TK, TV>* temp = root;
+                root = root->children[0];
+                delete temp;
+            }
+        }
+    }
+
+    void remove(BTreeNode<TK, TV>*& node, TK key) {
+        int i = 0;
+
+        while (i < node->count && key > node->keys[i]) {
+            i++;
+        }
+
+        if (node->leaf) {
+            if (i < node->count && node->keys[i] == key) {
+                popElement(node, i);
+            }
+        }
+        else {
+            if (i < node->count && node->keys[i] == key) {
+                key = minKey(node->children[i + 1]);
+                node->keys[i] = key;
+                i = i + 1;
+            }
+
+            remove(node->children[i], key);
+
+            if (node->children[i]->count < (M - 1) / 2) {
+                ExtractionResult extract_result;
+                if (i > 0 && node->children[i - 1]->count > (M - 1) / 2) {
+                    extract_result = extractLast(node->children[i - 1]);
+                    relocate_left(node->children[i], node->keys[i - 1], node->values[i - 1], extract_result.right_tree);
+                    node->keys[i - 1] = extract_result.key;
+                    node->values[i - 1] = extract_result.value;
+                }
+                else if (i < node->count && node->children[i + 1]->count > (M - 1) / 2) {
+                    extract_result = extractFirst(node->children[i + 1]);
+                    relocate_right(node->children[i], node->keys[i], node->values[i], extract_result.left_tree);
+                    node->keys[i] = extract_result.key;
+                    node->values[i] = extract_result.value;
+                }
+                else if (i > 0) {
+                    join(node->children[i - 1], node->keys[i - 1], node->values[i - 1], node->children[i]);
+                    delete node->children[i];
+                    popElement(node, i - 1);
+                }
+                else {
+                    join(node->children[i], node->keys[i], node->values[i], node->children[i + 1]);
+                    delete node->children[i + 1];
+                    popElement(node, i);
+                }
+            }
+        }
+    }
+
+    TK minKey(BTreeNode<TK, TV>* node) {
+        while (!node->leaf)
+            node = node->children[0];
+        return node->keys[0];
+    }
+
+    ExtractionResult extractLast(BTreeNode<TK, TV>*& node) {
+        ExtractionResult result;
+        result.key = node->keys[node->count - 1];
+        result.value = node->values[node->count - 1];
+        result.right_tree = node->children[node->count];
+        node->count--;
+        return result;
+    }
+
+    ExtractionResult extractFirst(BTreeNode<TK, TV>*& node) {
+        ExtractionResult result;
+        result.key = node->keys[0];
+        result.value = node->values[0];
+        result.left_tree = node->children[0];
+        int i = 0;
+        for (; i < node->count - 1; i++) {
+            node->keys[i] = node->keys[i + 1];
+            node->values[i] = node->values[i + 1];
+            node->children[i] = node->children[i + 1];
+        }
+        node->children[i] = node->children[i + 1];
+        node->count--;
+        return result;
+    }
+
+    void popElement(BTreeNode<TK, TV>*& node, int pos) {
+        int i = pos;
+        for (; i < node->count - 1; i++) {
+            node->keys[i] = node->keys[i + 1];
+            node->values[i] = node->values[i + 1];
+            node->children[i + 1] = node->children[i + 2];
+        }
+        node->count--;
+    }
+
+    void join(BTreeNode<TK, TV>*& left_nodo, TK middle, TV mid_val, BTreeNode<TK, TV>*& right_node) {
+        relocate_right(left_nodo, middle, mid_val, right_node->children[0]);
+        for (int i = 0; i < right_node->count; ++i)
+            relocate_right(left_nodo, right_node->keys[i], right_node->values[i], right_node->children[i + 1]);
     }
 
     std::vector<TV> range_search(TK begin, TK end) {
@@ -66,6 +175,10 @@ public:
     }
 
     void get_sorted_elements(BTreeNode<TK, TV>* node, std::vector<TV>& result) {
+        if (root == nullptr) {
+            return;
+        }
+
         int i;
         for (i = 0; i < node->count; i++) {
             if (node->children[i] != nullptr) {

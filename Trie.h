@@ -96,6 +96,10 @@ public:
 
         std::vector<TV> empty;
 
+        if (root == nullptr) {
+            return empty;
+        }
+
         TrieNode* node = root;
         int index;
 

@@ -19,6 +19,8 @@ private:
 
     BTree<Datetime, Record*> btree_index_date;
 
+    BTree<double, Record*> btree_index_amount;
+
     Trie<Record*> trie_index_sender_id;
 
     Trie<Record*> trie_index_receiver_id;
@@ -54,6 +56,20 @@ public:
 
     std::vector<Record*> i_btree_records_in_date(Datetime date) {
         return btree_index_date.search(date);
+    }
+
+    void i_btree_date_delete_key(Datetime key) {
+        auto attempts = btree_index_date.search(key).size();
+
+        for (int i = 0; i < attempts; ++i) {
+            btree_index_date.remove(key);
+        }
+    }
+
+    // BTREE INDEX AMOUNT
+
+    std::vector<Record*> i_btree_records_in_amount_range(double begin, double end) {
+        return btree_index_amount.range_search(begin, end);
     }
 
     // TRIE INDEX SENDER
@@ -114,6 +130,7 @@ public:
                 btree_index_date.insert(dynamic_cast<RecordBank*>(block->block_records[i])->date, block->block_records[i]);
                 trie_index_sender_id.insert(dynamic_cast<RecordBank*>(block->block_records[i])->sender_id, block->block_records[i]);
                 trie_index_receiver_id.insert(dynamic_cast<RecordBank*>(block->block_records[i])->receiver_id, block->block_records[i]);
+                btree_index_amount.insert(dynamic_cast<RecordBank*>(block->block_records[i])->amount, block->block_records[i]);
             }
         }
     }
