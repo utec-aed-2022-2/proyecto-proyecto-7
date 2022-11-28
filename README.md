@@ -88,7 +88,7 @@ necesarios hasta que se logre "adivinarlo".
 
 ### B Tree
 
-- Índice dedicado a las fechas de los registros.
+- Índice dedicado a las fechas y montos de los registros.
 
 ### ChainHash
 
@@ -150,7 +150,7 @@ necesarios hasta que se logre "adivinarlo".
 - Insertar en el índice Trie: Complejidad O(n).
 
 
-- Insertar en el índice Hash: O(1) amortizado.
+- Insertar en el índice Hash: Complejidad O(1) amortizado.
 
 
 ## Modo de uso
