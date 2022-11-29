@@ -13,6 +13,7 @@ const int MAX_BLOCK_SIZE = 5;
 
 // Rango del entero usado para el Proof Of Work.
 const int MIN_POW = 11;
+
 const int MAX_POW = 11;
 
 // Función que genera un entero aleatorio entre cierto rango.
@@ -69,6 +70,7 @@ public:
 
     // El hash tanto del Block actual como del previo.
     std::string curr_hash;
+
     std::string prev_hash;
 
     Block() {
@@ -82,7 +84,8 @@ public:
         for (int i = 0; i < MAX_BLOCK_SIZE; ++i) {
             if (block_records[i] == nullptr) {
                 serialized_block_records += "  " + std::to_string(i) + ". EMPTY RECORD" + "\n";
-            } else {
+            }
+            else {
                 serialized_block_records += "  " + std::to_string(i) + ". " + block_records[i]->serialize() + "\n";
             }
         }
@@ -118,6 +121,18 @@ public:
         return os;
     }
 
+    std::string to_string() {
+        std::string res;
+
+        res += "CURRENT HASH: " + curr_hash + "\n";
+        res += "PREVIOUS HASH: " + prev_hash + "\n";
+        res += "PROOF OF WORK: " + proof_of_work + "\n";
+        res += "RECORDS:\n";
+        res += serializeBlockRecords();
+
+        return res;
+    }
+
     // Destructor que realiza un delete por cada Record que tenga el Block.
     ~Block() {
         for (auto& block_record: block_records) {
@@ -125,6 +140,5 @@ public:
         }
     }
 };
-
 
 #endif
