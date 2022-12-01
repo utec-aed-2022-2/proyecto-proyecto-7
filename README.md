@@ -187,14 +187,10 @@ necesarios hasta que se logre "adivinarlo".
 
 ### Nicolás Arroyo
 
-- Creación de la estructura Record.
-- Creación de las clases Block y Blockchain.
+- Creación de la estructura Blockchain y sus componentes.
 - Adaptar BTree, Trie y Chainhash para guardar un key value.
-- Investigación sobre los métodos de hashing.
-- Creación del readme.
 - Creación del diagrama de clases.
 - Creación de la interfaz.
-- Creación del ppt.
 
 
 ## Conclusiones
