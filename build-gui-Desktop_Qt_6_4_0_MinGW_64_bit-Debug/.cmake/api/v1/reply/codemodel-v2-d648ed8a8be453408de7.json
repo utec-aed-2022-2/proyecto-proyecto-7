@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-41c350ec46eeefac551d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "gui",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "gui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gui-Debug-61e7549f5b86ad157619.json",
+					"name" : "gui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gui_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gui_autogen-Debug-4ae6e5318caa999ca36d.json",
+					"name" : "gui_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gui_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gui_autogen_timestamp_deps-Debug-b4233ee6543f81516605.json",
+					"name" : "gui_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/juand/Google Drive/frontenf/build-gui-Desktop_Qt_6_4_0_MinGW_64_bit-Debug",
+		"source" : "C:/Users/juand/Google Drive/frontenf/gui"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
