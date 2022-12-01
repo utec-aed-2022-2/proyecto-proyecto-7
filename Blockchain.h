@@ -72,6 +72,14 @@ public:
         return btree_index_amount.range_search(begin, end);
     }
 
+    void i_btree_amount_delete_key(double key) {
+        auto attempts = btree_index_amount.search(key).size();
+
+        for (int i = 0; i < attempts; ++i) {
+            btree_index_amount.remove(key);
+        }
+    }
+
     // TRIE INDEX SENDER
     std::vector<Record*> i_trie_sender_contains(std::string key) {
         return trie_index_sender_id.search(std::move(key));
