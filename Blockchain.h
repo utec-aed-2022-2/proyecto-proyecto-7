@@ -66,6 +66,14 @@ public:
         }
     }
 
+    Record* i_btree_last_record() {
+        return btree_index_date.maxVal();
+    }
+
+    Record* i_btree_first_record() {
+        return btree_index_date.minVal();
+    }
+
     // BTREE INDEX AMOUNT
 
     std::vector<Record*> i_btree_records_in_amount_range(double begin, double end) {
@@ -78,6 +86,14 @@ public:
         for (int i = 0; i < attempts; ++i) {
             btree_index_amount.remove(key);
         }
+    }
+
+    Record* i_btree_max_record() {
+        return btree_index_amount.maxVal();
+    }
+
+    Record* i_btree_min_record() {
+        return btree_index_amount.minVal();
     }
 
     // TRIE INDEX SENDER

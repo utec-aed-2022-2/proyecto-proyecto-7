@@ -85,6 +85,11 @@ void main_menu(Blockchain& bc) {
         std::cout << std::endl;
         std::cout << "20. Agregar bloque" << std::endl;
         std::cout << std::endl;
+        std::cout << "21. Primer registro" << std::endl;
+        std::cout << "22. Ultimo registro" << std::endl;
+        std::cout << "23. Minimo registro" << std::endl;
+        std::cout << "24. Maximo registro" << std::endl;
+        std::cout << std::endl;
         std::cout << "Opcion elegida: ";
         std::cin >> option;
         std::cout << std::endl;
@@ -262,6 +267,18 @@ void main_menu(Blockchain& bc) {
             }
 
             bc.addBlock(b);
+        }
+        else if (option == 21) {
+            std::cout << bc.i_btree_first_record()->serialize() << std::endl;
+        }
+        else if (option == 22) {
+            std::cout << bc.i_btree_last_record()->serialize() << std::endl;
+        }
+        else if (option == 23) {
+            std::cout << bc.i_btree_min_record()->serialize() << std::endl;
+        }
+        else if (option == 24) {
+            std::cout << bc.i_btree_max_record()->serialize() << std::endl;
         }
     }
 

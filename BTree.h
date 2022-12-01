@@ -96,6 +96,26 @@ public:
         }
     }
 
+    TV minVal() {
+        return minVal(root);
+    }
+
+    TV maxVal() {
+        return maxVal(root);
+    }
+
+    TV minVal(BTreeNode<TK, TV>* node) {
+        while (!node->leaf)
+            node = node->children[0];
+        return node->values[0];
+    }
+
+    TV maxVal(BTreeNode<TK, TV>* node) {
+        while (!node->leaf)
+            node = node->children[node->count];
+        return node->values[node->count - 1];
+    }
+
     TK minKey(BTreeNode<TK, TV>* node) {
         while (!node->leaf)
             node = node->children[0];
