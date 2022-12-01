@@ -71,40 +71,16 @@ public:
     std::string curr_hash;
     std::string prev_hash;
 
-    Block() {
-        proof_of_work = std::to_string(generate_random_int());
-    }
+    Block();
 
     // Convierte y retorna en un solo string los Records de un Block.
-    std::string serializeBlockRecords() {
-        std::string serialized_block_records;
-
-        for (int i = 0; i < MAX_BLOCK_SIZE; ++i) {
-            if (block_records[i] == nullptr) {
-                serialized_block_records += "  " + std::to_string(i) + ". EMPTY RECORD" + "\n";
-            } else {
-                serialized_block_records += "  " + std::to_string(i) + ". " + block_records[i]->serialize() + "\n";
-            }
-        }
-        return serialized_block_records;
-    }
+    std::string serializeBlockRecords();
 
     // Insertará un Record en el Block.
-    bool insertRecord(Record* record) {
-        // Si el Block ya está lleno, retorna false.
-        if (block_records_size == MAX_BLOCK_SIZE) {
-            return false;
-        }
-        block_records[block_records_size] = record;
-        ++block_records_size;
-        recalculateHash();
-        return true;
-    }
+    bool insertRecord(Record* record);
 
     // Recalcula el hash del bloque cada vez que sus datos cambian.
-    void recalculateHash() {
-        curr_hash = SHA256_string(prev_hash + serializeBlockRecords());
-    }
+    void recalculateHash();
 
     // EDUCATIVE PURPOSES
     // Sobrecarga que permite mostrar toda sobre un Block.
@@ -119,11 +95,7 @@ public:
     }
 
     // Destructor que realiza un delete por cada Record que tenga el Block.
-    ~Block() {
-        for (auto& block_record: block_records) {
-            delete block_record;
-        }
-    }
+    ~Block();
 };
 
 
