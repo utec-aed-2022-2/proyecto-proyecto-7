@@ -149,6 +149,9 @@ Para mayor comprensión, el código se encuentra comentado.
 - Creación de los test del main.
 - Creación de las funciones experimentales de pseudoapp.h
 
+### Juan Diego Cchu - Ronaldo Flores
+- Uso del Qt creator para la interfaz grafica
+
 ## Bibliografía
 
 - Narayanan, Arvind; Bonneau, Joseph; Felten, Edward; Miller, Andrew; Goldfeder, Steven (2016). Bitcoin and
