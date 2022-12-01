@@ -190,8 +190,12 @@ necesarios hasta que se logre "adivinarlo".
 - Creación de la estructura Blockchain y sus componentes.
 - Adaptar BTree, Trie y Chainhash para guardar un key value.
 - Creación del diagrama de clases.
-- Creación de la interfaz.
+- Creación de la interfaz en consola.
 
+###Bruno Yon & Juan Diego Chu
+- Creacion del GUI para el freontend del proyecto. 
+- Creacion de clase .ui usando qt creator. 
+- No se llego a completar la conexion entre frontend y backend usando slots and signals
 
 ## Conclusiones
 
