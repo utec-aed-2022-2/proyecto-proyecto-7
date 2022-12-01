@@ -10,8 +10,11 @@ template<class T>
 class CircularArray {
 private:
     T* array;
+
     int capacity;
+
     int back;
+
     int front;
 
     int next(int index) {
@@ -31,7 +34,7 @@ public:
         back = -1;
     }
 
-    CircularArray(int _capacity) {
+    explicit CircularArray(int _capacity) {
         if (_capacity <= 0) {
             throw std::invalid_argument("Cannot create array with given capacity.");
         }
@@ -57,7 +60,8 @@ public:
         if (front == -1) {
             front = next(front);
             array[front] = data;
-        } else {
+        }
+        else {
             array[prev(front)] = data;
             front = prev(front);
         }
@@ -123,7 +127,8 @@ public:
         if (this->size() == 1) {
             front = -1;
             back = -1;
-        } else {
+        }
+        else {
             front = next(front);
         }
         return tmp;
@@ -137,7 +142,8 @@ public:
         if (this->size() == 1) {
             front = -1;
             back = -1;
-        } else {
+        }
+        else {
             back = prev(back);
         }
         return tmp;
@@ -163,7 +169,8 @@ public:
         }
         if (back == front) {
             return 1;
-        } else {
+        }
+        else {
             return front < back ? (back - front + 1) : (capacity - front + back + 1);
         }
     }
