@@ -98,6 +98,8 @@ necesarios hasta que se logre "adivinarlo".
 
 - Índice dedicado a los nombres de todos los usuarios.
 
+![image](diagrama.png)
+
 ## Análisis de complejidad
 
 - Insertar bloque: Al estar usando un array circular, el push_back de un nuevo bloque se realiza en O(1). Sin
